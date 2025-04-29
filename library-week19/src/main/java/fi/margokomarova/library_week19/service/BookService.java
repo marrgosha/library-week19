@@ -9,4 +9,6 @@ public interface BookService {
 
     public BookDto updateBook(BookUpdateDto bookUpdateDto);
 
+    public void deleteBook(Long id);
+
 }

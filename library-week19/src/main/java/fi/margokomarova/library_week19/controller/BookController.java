@@ -5,10 +5,7 @@ import fi.margokomarova.library_week19.dto.BookDto;
 import fi.margokomarova.library_week19.dto.BookUpdateDto;
 import fi.margokomarova.library_week19.service.BookService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,4 +23,8 @@ public class BookController {
         return bookService.updateBook(bookUpdateDto);
     }
 
+    @DeleteMapping("/book/delete/{id}")
+    void updateBook(@PathVariable("id") Long id) {
+        bookService.deleteBook(id);
+    }
 }

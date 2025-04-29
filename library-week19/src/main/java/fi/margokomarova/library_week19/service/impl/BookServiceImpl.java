@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
+    @Override
     public BookDto createBook(BookCreateDto bookCreateDto) {
         Book book = bookRepository.save(convertDtoToEntity(bookCreateDto));
         BookDto bookDto = convertEntityToDto(book);
@@ -36,6 +37,7 @@ public class BookServiceImpl implements BookService {
                 .build();
     }
 
+    @Override
     public BookDto updateBook(BookUpdateDto bookUpdateDto) {
         Book book = bookRepository.findById(bookUpdateDto.getId()).orElseThrow();
         book.setName(bookUpdateDto.getName());
@@ -43,5 +45,10 @@ public class BookServiceImpl implements BookService {
         Book savedBook = bookRepository.save(book);
         BookDto bookDto = convertEntityToDto(savedBook);
         return bookDto;
+    }
+
+    @Override
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
     }
 }
